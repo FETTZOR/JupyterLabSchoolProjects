@@ -1,0 +1,2 @@
+cd
+jupyter lab
