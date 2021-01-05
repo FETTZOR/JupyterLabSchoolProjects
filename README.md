@@ -1,2 +1,2 @@
 # JupyterLabSchoolProjects
-University projects in Jupyter Lab
+Homework in Jupyter Lab
