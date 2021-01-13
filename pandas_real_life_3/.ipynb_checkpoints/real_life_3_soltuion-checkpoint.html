@@ -1,0 +1,95 @@
+{
+ "cells": [
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "import pandas as pd\n",
+    "import numpy as np\n",
+    "# pd.set_option('display.width', 400)\n",
+    "# pd.set_option('display.max_columns', 550)\n",
+    "pd.set_option(\"display.max_rows\", None, \"display.max_columns\", None)\n",
+    "data = pd.read_csv('data_by_year.csv')\n",
+    "\n",
+    "\n",
+    "\n",
+    "data = data.drop(['acousticness', 'energy', 'instrumentalness', 'valence', 'popularity', 'key', 'mode'], axis=1)\n",
+    "loudness_nowadays_counter = 0\n",
+    "loudness_before_counter = 0\n",
+    "\n",
+    "data2 = data[['year', \"loudness\"]].groupby(\"year\").mean()\n",
+    "loudness_value_1921 = data2.iloc[1].tolist()\n",
+    "loudness_value_1921 = (\"\".join(map(str, loudness_value_1921)))\n",
+    "loudness_value_1921 = (\"\".join(map(str, loudness_value_1921)))\n",
+    "loudness_value_1980 = data2.iloc[59].tolist()\n",
+    "loudness_value_1980 = (\"\".join(map(str, loudness_value_1980)))\n",
+    "loudness_value_2000 = data2.iloc[79].tolist()\n",
+    "loudness_value_2000 = (\"\".join(map(str, loudness_value_2000)))\n",
+    "loudness_value_2010 = data2.iloc[89].tolist()\n",
+    "loudness_value_2010 = (\"\".join(map(str, loudness_value_2010)))\n",
+    "loudness_value_2020 = data2.iloc[99].tolist()\n",
+    "loudness_value_2020 = (\"\".join(map(str, loudness_value_2020)))\n",
+    "print(loudness_value_2020)\n",
+    "\n",
+    "# compare loudness values between 2020 and 1921\n",
+    "if float(loudness_value_1921) > float(loudness_value_2020):\n",
+    "    difference = float(loudness_value_1921) - float(loudness_value_2020)\n",
+    "    print(f'Music in 1921 was louder then nowadays... and difference between them is {difference}\\n'\n",
+    "          f'when average loudness in 1921 was {loudness_value_1921} and average loudness nowadays'\n",
+    "          f' {round(float(loudness_value_2020))}')\n",
+    "    loudness_before_counter += 1\n",
+    "else:\n",
+    "    difference = float(loudness_value_2020) - float(loudness_value_1921)\n",
+    "    print(f'Music in 2020 was louder then in 1921... and difference between them is {round(difference, 2)}\\n'\n",
+    "          f'when average loudness in 1921 was {round(float(loudness_value_1921))} and average'\n",
+    "          f' loudness nowadays {round(float(loudness_value_2020))}')\n",
+    "    loudness_nowadays_counter += 1\n",
+    "\n",
+    "if float(loudness_value_1980) > float(loudness_value_2020):\n",
+    "    difference = float(loudness_value_1980) - float(loudness_value_2020)\n",
+    "    print(f'Music in 1981 was louder then nowadays... and difference between them is {difference}\\n'\n",
+    "          f'when average loudness in 1981 was {loudness_value_1980} and average loudness nowadays'\n",
+    "          f' {round(float(loudness_value_2020))}')\n",
+    "    loudness_before_counter += 1\n",
+    "else:\n",
+    "    difference = float(loudness_value_2020) - float(loudness_value_1980)\n",
+    "    print(f'Music in 2020 was louder then in 1981... and difference between them is {round(difference, 2)}\\n'\n",
+    "          f'when average loudness in 1981 was {round(float(loudness_value_1980))} and average'\n",
+    "          f' loudness nowadays {round(float(loudness_value_2020))}')\n",
+    "    loudness_nowadays_counter += 1\n",
+    "data2[\"loudness_difference_between_nowadays\"] = data2[\"loudness\"] - float(loudness_value_2020)\n",
+    "print(data2)"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "metadata": {},
+   "outputs": [],
+   "source": []
+  }
+ ],
+ "metadata": {
+  "kernelspec": {
+   "display_name": "Python 3",
+   "language": "python",
+   "name": "python3"
+  },
+  "language_info": {
+   "codemirror_mode": {
+    "name": "ipython",
+    "version": 3
+   },
+   "file_extension": ".py",
+   "mimetype": "text/x-python",
+   "name": "python",
+   "nbconvert_exporter": "python",
+   "pygments_lexer": "ipython3",
+   "version": "3.8.2"
+  }
+ },
+ "nbformat": 4,
+ "nbformat_minor": 4
+}
